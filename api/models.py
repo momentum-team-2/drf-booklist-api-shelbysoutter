@@ -13,6 +13,7 @@ class Book(models.Model):
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=250)
     status = models.CharField(max_length=200)
+    #note = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
 
 
