@@ -1,20 +1,22 @@
 from rest_framework import serializers
 from api.models import Book, Note, User
 
+class NestedNoteSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Note
+        fields = ['body']
 
 class NoteSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    book_id = serializers.IntegerField()
 
     class Meta:
         model = Note
-        fields = ['url', 'id', 'owner', 'book_id', 'body',]
+        fields = ['url', 'id', 'owner', 'body', 'book',]
 
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    notes = NoteSerializer(many=True, read_only=True)
-
+    notes = NestedNoteSerializer(many=True)
     
     class Meta:
         model = Book

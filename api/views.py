@@ -47,5 +47,5 @@ def api_root(request, format=None):
     return Response({
         'users': reverse('user-list', request=request, format=format),
         'books': reverse('book-list', request=request, format=format),
-        'notes': reverse('note-list', request=request, format=format)
+        'notes': reverse('note-list', request=request, format=format),
     })

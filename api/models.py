@@ -13,15 +13,20 @@ class Book(models.Model):
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=250)
     status = models.CharField(max_length=200)
-    #note = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
+
+    def __str__(self):
+        return f"{self.title}: {self.author}"
 
 
 class Note(models.Model):
     body = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='notes')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='notes', null=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.book.title}'
 
 
 def get_book(queryset, user):
