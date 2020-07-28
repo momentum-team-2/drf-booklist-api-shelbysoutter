@@ -6,12 +6,19 @@ class NestedNoteSerializer(serializers.HyperlinkedModelSerializer):
         model = Note
         fields = ['body']
 
+
+class NestedBookSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['title']
+
+
 class NoteSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Note
-        fields = ['url', 'id', 'owner', 'body', 'book',]
+        fields = ['url', 'id', 'owner', 'body', 'book']
 
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):

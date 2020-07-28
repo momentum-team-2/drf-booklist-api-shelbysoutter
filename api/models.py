@@ -25,9 +25,6 @@ class Note(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='notes', null=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f'{self.book.title}'
-
 
 def get_book(queryset, user):
     if user.is_authenticated:
