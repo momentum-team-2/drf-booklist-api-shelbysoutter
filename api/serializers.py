@@ -17,6 +17,7 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     page_number = serializers.IntegerField()
     created = serializers.DateTimeField()
+    #book = NestedBookSerializer()
 
     class Meta:
         model = Note
