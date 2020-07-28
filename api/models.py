@@ -24,6 +24,7 @@ class Note(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='notes', null=True)
     created = models.DateTimeField(auto_now_add=True)
+    page_number = models.IntegerField(null=True)
 
 
 def get_book(queryset, user):
